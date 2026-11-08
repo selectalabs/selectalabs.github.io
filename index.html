@@ -114,6 +114,28 @@ kbd{font-family:inherit;font-size:12.5px;font-weight:600;background:var(--bg-2);
 .mock .keys kbd{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);color:#fff}
 
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+/* product tabs */
+.ptabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:40px;background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:6px;width:max-content;max-width:100%}
+.ptab{font:inherit;font-size:15px;font-weight:600;color:var(--slate);background:transparent;border:0;cursor:pointer;padding:11px 24px;border-radius:999px;white-space:nowrap;transition:background .18s,color .18s}
+.ptab:hover{color:var(--navy)}
+.ptab.on{background:var(--navy);color:#fff;box-shadow:0 6px 18px rgba(0,25,77,.18)}
+.ptab:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.ppanel{display:none;margin-top:22px}
+.ppanel.on{display:grid}
+.pnext{text-align:center;padding:56px 40px}
+.pnext.on{display:block}
+.pnext .placeholder{margin-top:28px;height:120px;border-radius:12px;border:1px dashed #C9D3E8;background:repeating-linear-gradient(135deg,#F7F9FD 0 12px,#FFF 12px 24px);display:flex;align-items:center;justify-content:center;color:var(--slate);font-size:13px;font-weight:500}
+@media (max-width:640px){.ptabs{width:100%;justify-content:center}.ptab{padding:10px 16px;font-size:14px}}
+/* askadb + toolecta mocks */
+.mock .ask{background:#fff;color:var(--ink);border-radius:10px;padding:15px 16px;font-weight:600;font-size:15px}
+.mock .note-s{font-size:12.5px;color:var(--mist);margin-bottom:12px;line-height:1.5}
+.mock .rows{display:grid;gap:8px}
+.mock .r{display:grid;grid-template-columns:62px 1fr 34px;align-items:center;gap:10px;font-size:12.5px;color:#E6ECFA}
+.mock .r i{height:13px;border-radius:4px;background:var(--gold);display:block}
+.mock .r b{text-align:end;font-weight:600}
+.mock .search{background:#fff;color:var(--slate);border-radius:10px;padding:14px 16px;font-size:14px}
+.mock .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.mock .tgrid span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:11px 6px;font-size:11.5px;color:#E6ECFA;text-align:center}
 @media (max-width:760px){.duo{grid-template-columns:1fr}}
 .soon h3{font-size:24px}
 .soon .placeholder{margin-top:22px;height:120px;border-radius:12px;border:1px dashed #C9D3E8;background:repeating-linear-gradient(135deg,#F7F9FD 0 12px,#FFF 12px 24px);display:flex;align-items:center;justify-content:center;color:var(--slate);font-size:13px;font-weight:500}
@@ -204,63 +226,110 @@ footer a:hover{color:var(--navy)}
       <h2>Built to fit into the way you already work</h2>
       <p class="lead">Three products available today, and more in the lab.</p>
 
-      <div class="products">
-        <article class="card flag" id="selecta-ai">
-          <div>
-            <span class="tag">Available now · Windows</span>
-            <h3>Selecta AI</h3>
-            <p class="sub">Select text in any app, press one shortcut, and AI fixes it, translates it, answers it, or turns it into a clean prompt.</p>
-            <ul class="feats">
-              <li><span><b>Search every AI chat.</b> All your ChatGPT, Claude and Gemini conversations in one place, searchable even when you only vaguely remember what was said.</span></li>
-              <li><span><b>A companion in any app.</b> Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd> from email, chat, code editors or the browser.</span></li>
-              <li><span><b>Prompts, translation and rewrites</b> on a shortcut, with the result placed back where your text was.</span></li>
-              <li><span><b>Your data stays on your device.</b> No account, no tracking.</span></li>
-            </ul>
-            <div class="actions">
-              <a class="btn btn-navy" href="https://github.com/selectalabs/SelectaAI/releases/latest/download/SelectaAI-Setup.exe">Download for Windows</a>
-              <a class="btn btn-line" href="https://selectalabs.github.io/SelectaAI/" target="_blank" rel="noopener">Visit product site</a>
-            </div>
-            <div class="meta">Free · macOS and Linux versions in progress</div>
-            <div class="note"><b>Installing on Windows?</b> Selecta AI is new, so Windows SmartScreen may show “Windows protected your PC”. Click <b>More info</b>, then <b>Run anyway</b>. The installer comes straight from our official GitHub releases.</div>
-          </div>
-          <div class="mock" aria-hidden="true">
-            <div class="bar"><i></i><i></i><i></i></div>
-            <div class="doc">Hi team, <mark>i wanted to let you know that the report will be late becuase we are still waiting the numbers</mark>.</div>
-            <div class="pop">
-              <div class="chips"><span class="on">Fix</span><span>Translate</span><span>Answer</span><span>Prompt</span></div>
-              <div class="out">I wanted to let you know that the report will be slightly delayed, as we are still waiting for the final numbers.</div>
-            </div>
-            <div class="keys"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd> from any app</div>
-          </div>
-        </article>
+      <div class="ptabs" role="tablist" aria-label="Products">
+        <button class="ptab on" role="tab" aria-selected="true" aria-controls="p-selectaai" id="t-selectaai" type="button">Selecta AI</button>
+        <button class="ptab" role="tab" aria-selected="false" aria-controls="p-askadb" id="t-askadb" type="button">AskaDB</button>
+        <button class="ptab" role="tab" aria-selected="false" aria-controls="p-toolecta" id="t-toolecta" type="button">Toolecta</button>
+        <button class="ptab" role="tab" aria-selected="false" aria-controls="p-next" id="t-next" type="button">What&rsquo;s next</button>
+      </div>
 
-        <div class="grid3">
-          <article class="card soon" id="askadb">
-            <span class="tag">Available now &middot; Windows and web</span>
-            <h3>AskaDB</h3>
-            <p class="sub">Ask your database in plain words. AskaDB writes safe, read-only SQL, runs it, and shows the answer as a table or a chart with a short explanation. Works with SQL Server, PostgreSQL, MySQL, Oracle, SQLite, Excel and CSV.</p>
-            <div class="actions">
-              <a class="btn btn-navy" href="https://apps.microsoft.com/detail/9N9RGB8ZRK8N" target="_blank" rel="noopener">Get it on Microsoft Store</a>
-              <a class="btn btn-line" href="https://mohamed-hamdy.github.io/askadb-site/" target="_blank" rel="noopener">Visit product site</a>
-            </div>
-            <div class="meta">Free &middot; Read-only, so your data is never changed</div>
-          </article>
-          <article class="card soon" id="toolecta">
-            <span class="tag">Available now &middot; Web</span>
-            <h3>Toolecta</h3>
-            <p class="sub">More than 300 free tools in your browser, from everyday calculators to developer utilities. No sign-up, no account, and nothing to install.</p>
-            <div class="actions">
-              <a class="btn btn-navy" href="https://selectalabs.github.io/toolecta/" target="_blank" rel="noopener">Open Toolecta</a>
-            </div>
-            <div class="meta">Free &middot; Works in any browser</div>
-          </article>
-          <article class="card soon">
-            <span class="tag grey">In the lab</span>
-            <h3>Next product</h3>
-            <p class="sub">We're already working on what comes next. Follow us to hear about it first.</p>
-            <div class="placeholder">Under wraps</div>
-          </article>
+      <article class="card flag ppanel on" id="p-selectaai" role="tabpanel" aria-labelledby="t-selectaai">
+        <div>
+          <span class="tag">Available now &middot; Windows</span>
+          <h3>Selecta AI</h3>
+          <p class="sub">Select text in any app, press one shortcut, and AI fixes it, translates it, answers it, or turns it into a clean prompt.</p>
+          <ul class="feats">
+            <li><span><b>Search every AI chat.</b> All your ChatGPT, Claude and Gemini conversations in one place, searchable even when you only vaguely remember what was said.</span></li>
+            <li><span><b>A companion in any app.</b> Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd> from email, chat, code editors or the browser.</span></li>
+            <li><span><b>Prompts, translation and rewrites</b> on a shortcut, with the result placed back where your text was.</span></li>
+            <li><span><b>Your data stays on your device.</b> No account, no tracking.</span></li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-navy" href="https://github.com/selectalabs/SelectaAI/releases/latest/download/SelectaAI-Setup.exe">Download for Windows</a>
+            <a class="btn btn-line" href="https://selectalabs.github.io/SelectaAI/" target="_blank" rel="noopener">Visit product site</a>
+          </div>
+          <div class="meta">Free &middot; macOS and Linux versions in progress</div>
+          <div class="note"><b>Installing on Windows?</b> Selecta AI is new, so Windows SmartScreen may show &ldquo;Windows protected your PC&rdquo;. Click <b>More info</b>, then <b>Run anyway</b>. The installer comes straight from our official GitHub releases.</div>
         </div>
+        <div class="mock" aria-hidden="true">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <div class="doc">Hi team, <mark>i wanted to let you know that the report will be late becuase we are still waiting the numbers</mark>.</div>
+          <div class="pop">
+            <div class="chips"><span class="on">Fix</span><span>Translate</span><span>Answer</span><span>Prompt</span></div>
+            <div class="out">I wanted to let you know that the report will be slightly delayed, as we are still waiting for the final numbers.</div>
+          </div>
+          <div class="keys"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd> from any app</div>
+        </div>
+      </article>
+
+      <article class="card flag ppanel" id="p-askadb" role="tabpanel" aria-labelledby="t-askadb">
+        <div>
+          <span class="tag">Available now &middot; Windows and web</span>
+          <h3>AskaDB</h3>
+          <p class="sub">Ask your database a question in plain words. AskaDB writes a safe, read-only SQL query, runs it, and shows the answer as a table or a chart with a short explanation.</p>
+          <ul class="feats">
+            <li><span><b>Read-only, always.</b> Every query runs inside a transaction that rolls back. It cannot change your data, even by accident.</span></li>
+            <li><span><b>Your rows never leave.</b> Only table and column names go to the AI, never the data itself.</span></li>
+            <li><span><b>Built for real schemas.</b> Thousands of tables? It finds the ones that matter first, then writes the query.</span></li>
+            <li><span><b>Works offline.</b> Point it at Ollama and nothing leaves your machine.</span></li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-navy" href="https://apps.microsoft.com/detail/9N9RGB8ZRK8N" target="_blank" rel="noopener">Get it on Microsoft Store</a>
+            <a class="btn btn-line" href="https://mohamed-hamdy.github.io/askadb-site/" target="_blank" rel="noopener">Visit product site</a>
+          </div>
+          <div class="meta">Free &middot; SQL Server, PostgreSQL, MySQL, Oracle, SQLite, Excel and CSV</div>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <div class="ask">Top 10 countries by sales</div>
+          <div class="pop">
+            <div class="note-s">Adds up invoice totals for each country, highest first.</div>
+            <div class="rows">
+              <div class="r"><span>USA</span><i style="width:100%"></i><b>523</b></div>
+              <div class="r"><span>Canada</span><i style="width:58%"></i><b>304</b></div>
+              <div class="r"><span>France</span><i style="width:37%"></i><b>195</b></div>
+              <div class="r"><span>Brazil</span><i style="width:36%"></i><b>190</b></div>
+              <div class="r"><span>Germany</span><i style="width:30%"></i><b>156</b></div>
+              <div class="r"><span>UK</span><i style="width:22%"></i><b>113</b></div>
+            </div>
+          </div>
+          <div class="keys">Read-only &middot; your data is never changed</div>
+        </div>
+      </article>
+
+      <article class="card flag ppanel" id="p-toolecta" role="tabpanel" aria-labelledby="t-toolecta">
+        <div>
+          <span class="tag">Available now &middot; Web</span>
+          <h3>Toolecta</h3>
+          <p class="sub">More than 300 free tools in your browser, from everyday calculators to developer utilities. No sign-up, no account, and nothing to install.</p>
+          <ul class="feats">
+            <li><span><b>Everything in one place.</b> Converters, formatters, generators and calculators, searchable from a single box.</span></li>
+            <li><span><b>Nothing to upload.</b> Our built-in tools run in your browser, so we never see what you put in them.</span></li>
+            <li><span><b>Arabic and English,</b> with full right-to-left support.</span></li>
+            <li><span><b>No account, ever.</b> Open a tool and use it.</span></li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-navy" href="https://selectalabs.github.io/toolecta/" target="_blank" rel="noopener">Open Toolecta</a>
+          </div>
+          <div class="meta">Free &middot; Works in any browser, on any device</div>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <div class="search">Search 300+ tools&hellip;</div>
+          <div class="tgrid"><span>Percentage</span><span>JSON format</span><span>QR code</span><span>Word count</span><span>Base64</span><span>Color picker</span><span>Unit convert</span><span>Regex test</span><span>Invoice</span></div>
+          <div class="keys">No sign-up &middot; runs in your browser</div>
+        </div>
+      </article>
+
+      <article class="card ppanel pnext" id="p-next" role="tabpanel" aria-labelledby="t-next">
+        <span class="tag grey">In the lab</span>
+        <h3>What&rsquo;s next</h3>
+        <p class="sub">We&rsquo;re already working on what comes next. Follow us on LinkedIn to hear about it first.</p>
+        <div class="actions" style="justify-content:center;margin-top:24px">
+          <a class="btn btn-line" href="https://www.linkedin.com/company/selectalabs/" target="_blank" rel="noopener">Follow Selecta Labs</a>
+        </div>
+        <div class="placeholder">Under wraps</div>
+      </article>
       </div>
     </div>
   </section>
@@ -328,6 +397,34 @@ footer a:hover{color:var(--navy)}
     <div>© <span id="y">2026</span> Selecta Labs</div>
   </div>
 </footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.ptab'));
+  function show(tab){
+    tabs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false')});
+    [].forEach.call(document.querySelectorAll('.ppanel'),function(p){p.classList.remove('on')});
+    tab.classList.add('on'); tab.setAttribute('aria-selected','true');
+    var panel=document.getElementById(tab.getAttribute('aria-controls'));
+    if(panel) panel.classList.add('on');
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight') n=tabs[(i+1)%tabs.length];
+      if(e.key==='ArrowLeft') n=tabs[(i-1+tabs.length)%tabs.length];
+      if(n){e.preventDefault();show(n);n.focus()}
+    });
+  });
+  function fromHash(){
+    var h=(location.hash||'').replace('#','');
+    var map={'selecta-ai':'t-selectaai','selectaai':'t-selectaai','askadb':'t-askadb','toolecta':'t-toolecta'};
+    var id=map[h]; if(!id) return;
+    var t=document.getElementById(id); if(t) show(t);
+  }
+  window.addEventListener('hashchange',fromHash); fromHash();
+})();
+document.getElementById('y').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
